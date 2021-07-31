@@ -10,7 +10,6 @@ const url = process.env.MONGODB_URI;
 
 MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
-    // console.log('Connected to MongoDB!');
     const db = client.db('quotes');
 
     app.use(express.static(__dirname + '/public'));
