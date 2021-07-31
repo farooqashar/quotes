@@ -11,17 +11,13 @@ const url = process.env.MONGODB_URI || baseURL;
 
 MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
-    console.log('Connected to MongoDB!');
+    // console.log('Connected to MongoDB!');
     const db = client.db('quotes');
 
     app.use(express.static(__dirname + '/public'));
     app.use(bodyParser.json());
 
     app.use(bodyParser.urlencoded({ extended: true }));
-
-    app.listen(3000, function () {
-    console.log("Listening on PORT 3000");
-    });
 
     app.get('/', (req,res) => {
         const allQuotes = db.collection('quotes').find().toArray()
