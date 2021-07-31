@@ -6,8 +6,8 @@ var mongoose = require('mongoose');
 const app = express();
 app.set('view engine', 'ejs');
 
-
-const url = 'mongodb+srv://ashar:ashar@cluster0.qp0tx.mongodb.net/quotes?retryWrites=true&w=majority';
+const baseURL = 'mongodb+srv://ashar:ashar@cluster0.qp0tx.mongodb.net/quotes?retryWrites=true&w=majority';
+const url = process.env.MONGODB_URI || baseURL;
 
 MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
