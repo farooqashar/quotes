@@ -19,6 +19,10 @@ MongoClient.connect(url, { useUnifiedTopology: true })
 
     app.use(bodyParser.urlencoded({ extended: true }));
 
+      app.listen(process.env.PORT || 3000, function() {
+        console.log('Listening on PORT 3000')
+        })
+
     app.get('/', (req,res) => {
         const allQuotes = db.collection('quotes').find().toArray()
         .then(results => {
@@ -26,6 +30,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         })
         .catch(error => console.error(error));
     });
+
 
     app.post('/quotes', (req,res) => {
         const allQuotes = db.collection('quotes');
