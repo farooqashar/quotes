@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<style>
+
+a {
+  color: #00B7FF;
+}
+
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+
+@keyframes mainTitle {
+  from {color: red;}
+  to {color: white;}
+  to {color: blue;}
+}
+
+@keyframes each {
+  from {color: purple;}
+  to {color: blue;}
+  to {color: goldenrod;}
+}
+
+@keyframes subt {
+  from {color: red;}
+  to {color: yellow;}
+  to {color: green;}
+}
+
+@keyframes bkgrdc {
+  from {background-color: lightcyan;}
+  to {background-color: darkslateblue;}
+  to {background-color: white;}
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  animation-name: bkgrdc;
+  animation-duration: 25s;
+}
+
+h1 {
+  color:crimson;
+  animation-name: mainTitle;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+.flex-container {
+    display: flex;
+
+}
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
+    margin-right: 167px;
+} 
+
+label:not(.check) {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.container {
+    text-align: center;
+}
+.button:hover, button:hover {
+  opacity: 0.8;
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px dotted #ccc;
+}
+ 
+li:last-child {
+  border: none;
+}
+ 
+li a {
+  text-decoration: none;
+  color: blue;
+  display: block;
+  width: 100%;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+
+.eachl {
+  color:cornflowerblue;
+  animation-name: each;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+.subttt {
+  color: aqua;
+  animation-name: subt;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+</style>
+
+
+
+
+
+
+
+
+<meta charset="UTF-8">
+<title>Quotes</title>
+<link rel='stylesheet' href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+<h1>Quotes</h1>
+<p class="text-info">This is a simple Express website for displaying various quotes!</p>
+
+<ul class="quotes">
+    <% for(var i = 0; i < quotes.length; i++) {%>
+      <li class="quote eachl">
+
+        <span>"<%= quotes[i].quote %>"</span>
+         - 
+        <span><%= quotes[i].name %></span>
+
+      </li>
+    <% } %>
+  </ul>
+</div>
+
+  <br /> 
+  <br />
+  <div class="flex-container">
+
+  <div class="flex-child">
+  <h4 class="subttt">Add Quotes</h4>
+    <form class="needs-validation" action="/quotes" method="POST">
+        <div class="form-group">
+            <label class="form-label" for="name">Name:</label>
+            <textarea required class="form-control"rows = "1" cols = "47" id="name" type="text" placeholder="Enter A Name Here" name = "name"></textarea>
+
+        </div>
+        <div>
+            <label class="form-label" for="quote">Quote:</label>
+            <textarea required class="form-control" rows = "5" cols = "47" id="quote" type="text" placeholder="Enter A Quote Here" name = "quote"></textarea>
+        </div>
+        <br/>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+
+  <div class="flex-child">
+    <h4 class="subttt">Update Quotes</h4>
+    <button class="btn btn-primary" id="update-button">Replace A Quote</button>
+  </div>
+
+  <div class="flex-child">
+    <h4 class="subttt">Remove Quotes</h4>
+    <button class="btn btn-primary" id="delete-button">Delete A Quote</button>
+    <div class="text-danger" id="message"></div>
+  </div>
+
+    </div>
+
+<script src="/main.js"></script>
+
+</body>
+
+
+</html>
